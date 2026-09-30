@@ -10,14 +10,14 @@
     [guid]::NewGuid() no PowerShell). Para os testes locais (sideload)
     pode deixar esse mesmo.
   -->
-  <Id>b6f1b6d2-6e0a-4a9a-9d2e-3a1c2f7a8e10</Id>
+  <Id>64552453-d660-493b-9610-e8b0a583f18a</Id>
   <Version>1.0.0.0</Version>
   <ProviderName>Monfredini Transportes</ProviderName>
   <DefaultLocale>pt-BR</DefaultLocale>
   <DisplayName DefaultValue="Assinatura Monfredini"/>
   <Description DefaultValue="Insere automaticamente a assinatura oficial da Monfredini Transportes em novos e-mails."/>
-  <IconUrl DefaultValue="https://www.contoso.com/assets/icon-64.png"/>
-  <HighResolutionIconUrl DefaultValue="https://www.contoso.com/assets/icon-128.png"/>
+  <IconUrl DefaultValue="https://nicolassilva-spec.github.io/assinatura-outlook-addin/assets/icon-64.png"/>
+  <HighResolutionIconUrl DefaultValue="https://nicolassilva-spec.github.io/assinatura-outlook-addin/assets/icon-128.png"/>
   <SupportUrl DefaultValue="https://www.monfredinitransportes.com.br"/>
 
   <AppDomains>
@@ -80,15 +80,15 @@
 
       <Resources>
         <bt:Images>
-          <bt:Image id="Icon.16x16" DefaultValue="https://www.contoso.com/assets/icon-16.png"/>
-          <bt:Image id="Icon.32x32" DefaultValue="https://www.contoso.com/assets/icon-32.png"/>
-          <bt:Image id="Icon.80x80" DefaultValue="https://www.contoso.com/assets/icon-80.png"/>
+          <bt:Image id="Icon.16x16" DefaultValue="https://nicolassilva-spec.github.io/assinatura-outlook-addin/assets/icon-16.png"/>
+          <bt:Image id="Icon.32x32" DefaultValue="https://nicolassilva-spec.github.io/assinatura-outlook-addin/assets/icon-32.png"/>
+          <bt:Image id="Icon.80x80" DefaultValue="https://nicolassilva-spec.github.io/assinatura-outlook-addin/assets/icon-80.png"/>
         </bt:Images>
         <bt:Urls>
           <!-- Reaproveitando os arquivos commands.html/commands.js que o
                "yo office" ja gerou - e neles que colocamos nossa logica. -->
-          <bt:Url id="Autorun" DefaultValue="https://www.contoso.com/commands.html"/>
-          <bt:Url id="runtimeJs" DefaultValue="https://www.contoso.com/commands.js"/>
+          <bt:Url id="Autorun" DefaultValue="https://nicolassilva-spec.github.io/assinatura-outlook-addin/commands.html"/>
+          <bt:Url id="runtimeJs" DefaultValue="https://nicolassilva-spec.github.io/assinatura-outlook-addin/commands.js"/>
         </bt:Urls>
         <bt:ShortStrings>
           <bt:String id="GetStarted.Title" DefaultValue="Assinatura Monfredini" />
