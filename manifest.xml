@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+  xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides" xsi:type="MailApp">
+
+  <!--
+    ATENCAO: troque o Id abaixo por um GUID novo antes de publicar de
+    verdade (pode gerar um em https://www.guidgenerator.com/ ou rodando
+    [guid]::NewGuid() no PowerShell). Para os testes locais (sideload)
+    pode deixar esse mesmo.
+  -->
+  <Id>b6f1b6d2-6e0a-4a9a-9d2e-3a1c2f7a8e10</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>Monfredini Transportes</ProviderName>
+  <DefaultLocale>pt-BR</DefaultLocale>
+  <DisplayName DefaultValue="Assinatura Monfredini"/>
+  <Description DefaultValue="Insere automaticamente a assinatura oficial da Monfredini Transportes em novos e-mails."/>
+  <IconUrl DefaultValue="https://www.contoso.com/assets/icon-64.png"/>
+  <HighResolutionIconUrl DefaultValue="https://www.contoso.com/assets/icon-128.png"/>
+  <SupportUrl DefaultValue="https://www.monfredinitransportes.com.br"/>
+
+  <AppDomains>
+    <AppDomain>https://localhost:3000</AppDomain>
+  </AppDomains>
+
+  <Hosts>
+    <Host Name="Mailbox"/>
+  </Hosts>
+
+  <Requirements>
+    <Sets DefaultMinVersion="1.1">
+      <Set Name="Mailbox" />
+    </Sets>
+  </Requirements>
+
+  <!-- Formato antigo, obrigatorio por compatibilidade, mas nao usamos
+       nenhum botao/task pane - fica praticamente vazio de proposito. -->
+  <FormSettings>
+  </FormSettings>
+  <Permissions>ReadWriteItem</Permissions>
+  <Rule xsi:type="RuleCollection" Mode="Or">
+    <Rule xsi:type="ItemIs" ItemType="Message" FormType="Edit" />
+  </Rule>
+  <DisableEntityHighlighting>false</DisableEntityHighlighting>
+  <!-- /Formato antigo -->
+
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.1" xsi:type="VersionOverridesV1_1">
+      <Description resid="residAppDesc" />
+
+      <Requirements>
+        <bt:Sets DefaultMinVersion="1.10">
+          <bt:Set Name="Mailbox" />
+        </bt:Sets>
+      </Requirements>
+
+      <Hosts>
+        <Host xsi:type="MailHost">
+          <!-- Runtime usado para rodar o codigo sozinho (sem abrir nenhuma
+               janela), conforme https://learn.microsoft.com/office/dev/add-ins/develop/event-based-activation -->
+          <Runtimes>
+            <Runtime resid="Autorun">
+              <Override type="javascript" resid="runtimeJs"/>
+            </Runtime>
+          </Runtimes>
+
+          <DesktopFormFactor>
+            <!-- Dispara a funcao onNewMessageComposeHandler toda vez que
+                 a pessoa clica em "Novo E-mail". -->
+            <ExtensionPoint xsi:type="LaunchEvent">
+              <LaunchEvents>
+                <LaunchEvent Type="OnNewMessageCompose" FunctionName="onNewMessageComposeHandler" />
+              </LaunchEvents>
+              <SourceLocation resid="Autorun" />
+            </ExtensionPoint>
+          </DesktopFormFactor>
+        </Host>
+      </Hosts>
+
+      <Resources>
+        <bt:Images>
+          <bt:Image id="Icon.16x16" DefaultValue="https://www.contoso.com/assets/icon-16.png"/>
+          <bt:Image id="Icon.32x32" DefaultValue="https://www.contoso.com/assets/icon-32.png"/>
+          <bt:Image id="Icon.80x80" DefaultValue="https://www.contoso.com/assets/icon-80.png"/>
+        </bt:Images>
+        <bt:Urls>
+          <!-- Reaproveitando os arquivos commands.html/commands.js que o
+               "yo office" ja gerou - e neles que colocamos nossa logica. -->
+          <bt:Url id="Autorun" DefaultValue="https://www.contoso.com/commands.html"/>
+          <bt:Url id="runtimeJs" DefaultValue="https://www.contoso.com/commands.js"/>
+        </bt:Urls>
+        <bt:ShortStrings>
+          <bt:String id="GetStarted.Title" DefaultValue="Assinatura Monfredini" />
+        </bt:ShortStrings>
+        <bt:LongStrings>
+          <bt:String id="residAppDesc" DefaultValue="Insere a assinatura oficial automaticamente em novos e-mails."/>
+        </bt:LongStrings>
+      </Resources>
+    </VersionOverrides>
+  </VersionOverrides>
+
+</OfficeApp>
