@@ -33,6 +33,9 @@
   <!-- Formato antigo, obrigatorio por compatibilidade, mas nao usamos
        nenhum botao/task pane - fica praticamente vazio de proposito. -->
   <FormSettings>
+  <Desktop>
+    <SourceLocation DefaultValue="https://nicolassilva-spec.github.io/assinatura-outlook-addin/taskpane.html"/>
+  </Desktop>
   </FormSettings>
   <Permissions>ReadWriteItem</Permissions>
   <Rule xsi:type="RuleCollection" Mode="Or">
